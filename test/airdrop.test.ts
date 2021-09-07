@@ -24,7 +24,7 @@ describe('MerkleAirdrop', function () {
 
 
  
-  describe('markle tree ', () => {
+  describe('merkle tree ', () => {
     it('should be able to verify offchain', async () => {
      
         
@@ -32,7 +32,7 @@ describe('MerkleAirdrop', function () {
       const { MerkleTree } = require('merkletreejs')
       const SHA256 = require('crypto-js/sha256')
 
-      const leaves = addressList.map(x => SHA256(x))
+      const leaves = addressList.map((x:any) => SHA256(x))
       const tree = new MerkleTree(leaves, SHA256)
       const root = tree.getRoot().toString('hex')
       const leaf = SHA256('0x7132c9f36abe62eab74cdfdd08c154c9ae45691b')
@@ -41,12 +41,25 @@ describe('MerkleAirdrop', function () {
 
       console.log('airdrop root is ', root)
 
+      expect(tree.verify(proof, leaf, root)).to.equal(true)
 
-      const badLeaves = ['a', 'x', 'c'].map(x => SHA256(x))
+
+      const badLeaves = ['a', 'x', 'c'].map((x:any) => SHA256(x))
       const badTree = new MerkleTree(badLeaves, SHA256)
       const badLeaf = SHA256('x')
       const badProof = tree.getProof(badLeaf)
       console.log(tree.verify(badProof, leaf, root)) // false
+
+      expect(tree.verify(badProof, leaf, root)).to.equal(false)
+
+    })
+  })
+
+
+
+  describe('token contract ', () => {
+    it('should be able to mint', async () => {
+      
 
     })
   })
