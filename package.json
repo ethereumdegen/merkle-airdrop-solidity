@@ -1,5 +1,5 @@
 {
-  "name": "@teller-finance/hardhat",
+  "name": "merkle-airdrop-solidity",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
