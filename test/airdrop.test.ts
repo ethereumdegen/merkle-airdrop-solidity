@@ -28,6 +28,10 @@ describe('MerkleAirdrop', function () {
     user = results.user
     deployer = results.deployer 
     
+    let params ={to: await user.getAddress(), value: web3.utils.numberToHex( web3.utils.toWei('1') ) }
+    await deployer.sendTransaction(params)
+
+    
   })
 
   const addressList = require('../config/airdropList.json')

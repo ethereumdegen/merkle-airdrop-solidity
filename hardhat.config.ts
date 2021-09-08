@@ -150,8 +150,7 @@ export default <HardhatUserConfig>{
       default: 0, // here this will by default take the first account as deployer
     },
     user: {
-      hardhat: 5,
-      localhost: 5,
+      default: "0x7132C9f36abE62EAb74CdfDd08C154c9AE45691B"
     },
     craSigner: {
       hardhat: 10,
