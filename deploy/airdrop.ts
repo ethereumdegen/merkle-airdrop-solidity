@@ -18,7 +18,7 @@ const deployOptions: DeployFunction = async (hre) => {
   const tellerOptions = await deploy({
     contract: 'AirdropToken',
     name: 'AirdropToken',
-    args: ['Airdrop Token','ADT',""],
+    args: ['Airdrop Token','ADT'],
     hre
     
   }) 

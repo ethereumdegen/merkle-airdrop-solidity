@@ -1846,15 +1846,15 @@ library Strings {
 contract AirdropToken is ERC721, Ownable {
   
    
-    bytes32 internal merkleRootHash = keccak256(abi.encode("65ffad5ac134d5ed9ae2e6ec340b7a10855c9bcb436008cd1f5f277fc139c850"));
-
+    bytes32 internal _merkleRoot = keccak256(abi.encodePacked(bytes32(0x65ffad5ac134d5ed9ae2e6ec340b7a10855c9bcb436008cd1f5f277fc139c850)));
+                                         
     uint256 internal nextTokenId = 0;
 
     mapping(address => bool) public hasClaimed;
 
 
-    constructor(string memory name, string memory symbol, string memory baseURI) ERC721(name, symbol) {
-        _setBaseURI(baseURI);         
+    constructor(string memory name, string memory symbol) ERC721(name, symbol) {
+        
     }  
 
 
@@ -1867,7 +1867,7 @@ contract AirdropToken is ERC721, Ownable {
     */
     function mintWithProof(bytes32[] memory merkleProof) public {
  
-        require( MerkleProof.verify(merkleProof, merkleRootHash, bytes32(uint256(uint160(msg.sender)))) , 'proof failure');
+        require( MerkleProof.verify(merkleProof, _merkleRoot, keccak256( abi.encodePacked(msg.sender)) ) , 'proof failure');
 
         require(hasClaimed[msg.sender] == false, 'already claimed');
 
