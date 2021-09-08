@@ -1977,14 +1977,14 @@ contract AirdropToken is ERC721, Ownable {
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
 
         if(getAnimationLevel(tokenId) == 3){
-            return "ipfs://QmVbPZXWgMTbz6quzzNest48HQCReykjCnjnUb2mGtwb92";
+            return "ipfs://QmbLrLMf8e7VZTcKcq4pjkv7yjLEN7RG8NqKQ4NGPtPuc3";
         }
 
         if(getAnimationLevel(tokenId) == 2){
-            return "ipfs://QmWJseA5BRXKVoZvakkgkeJbHnfDhfHKEvjbSVsoKUejw6";
+            return "ipfs://QmYeMoscWkT25PEeKSh73TZZQKxJ14ZvFE1QavGrebYgkT";
         }
 
-        return "ipfs://QmQZdibMbVpFTxyAF6TT5af5FqieZXCfSi1743137MkpAp";
+        return "ipfs://Qmah3iL7vaTteRoKeZKG39fP7ECVKNvQSXekf1GkgRunYb";
     }
 
 }
