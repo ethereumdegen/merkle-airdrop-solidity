@@ -7,6 +7,7 @@ const { solidity } = require('ethereum-waffle')
 
 const { MerkleTree } = require('merkletreejs')
 const SHA256 = require('crypto-js/sha256')
+const keccak256 = require('keccak256');
 
 const web3 = require('web3')
 
@@ -39,10 +40,10 @@ describe('MerkleAirdrop', function () {
         
 
     
-      const leaves = addressList.map((x:any) => SHA256(x))
-      const tree = new MerkleTree(leaves, SHA256)
+      const leaves = addressList.map((x:any) => keccak256(x))
+      const tree = new MerkleTree(leaves, keccak256, {sortPairs: true})
       const root = tree.getRoot().toString('hex')
-      const leaf = SHA256('0x7132c9f36abe62eab74cdfdd08c154c9ae45691b')
+      const leaf = keccak256('0x7132c9f36abe62eab74cdfdd08c154c9ae45691b')
       const proof = tree.getProof(leaf)
       console.log(tree.verify(proof, leaf, root)) // true
 
@@ -50,9 +51,9 @@ describe('MerkleAirdrop', function () {
       expect(tree.verify(proof, leaf, root)).to.equal(true)
 
 
-      const badLeaves = ['a', 'x', 'c'].map((x:any) => SHA256(x))
-      const badTree = new MerkleTree(badLeaves, SHA256)
-      const badLeaf = SHA256('x')
+      const badLeaves = ['a', 'x', 'c'].map((x:any) => keccak256(x))
+      const badTree = new MerkleTree(badLeaves, keccak256, {sortPairs: true})
+      const badLeaf = keccak256('x')
       const badProof = tree.getProof(badLeaf)
       console.log(tree.verify(badProof, leaf, root)) // false
 
@@ -71,16 +72,18 @@ describe('MerkleAirdrop', function () {
     it('should be able to mint', async () => {
 
         
-      const leaves = addressList.map((x:any) => SHA256(x))
-      const tree = new MerkleTree(leaves, SHA256)
+      const leaves = addressList.map((x:any) => keccak256(x))
+      const tree = new MerkleTree(leaves, keccak256, {sortPairs: true})
       const root = tree.getRoot().toString('hex')
+
+      const hexRoot = tree.getHexRoot()
       
-      console.log('airdrop root is ', root)
+      console.log('airdrop root is ', hexRoot)
 
       const userAddress = await user.getAddress()
       console.log('user address',userAddress)
 
-      const leaf = SHA256(userAddress)
+      const leaf = keccak256(userAddress)
       const proof = tree.getProof(leaf)
 
       const hexproof = tree.getHexProof(leaf)
@@ -98,10 +101,10 @@ describe('MerkleAirdrop', function () {
       console.log('bytes32proof',  hexproof)
 
 
-      await airdropTokenContract.connect(user).mintWithProof( hexproof );
+      await airdropTokenContract.connect(user).mintWithProof( hexproof , hexRoot);
 
 
-      let tokenBalance = await airdropTokenContract.connect(user).balanceOf(  user  )
+      let tokenBalance = await airdropTokenContract.connect(user).balanceOf(  userAddress  )
 
       tokenBalance.should.equal(1)
       

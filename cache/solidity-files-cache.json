@@ -664,8 +664,8 @@
       ]
     },
     "/home/andy/dev/merkle-airdrop/contracts/AirdropToken.sol": {
-      "lastModificationDate": 1631063710678,
-      "contentHash": "f6de646155737e5ba67c44e6b9a56b8d",
+      "lastModificationDate": 1631064014514,
+      "contentHash": "d354f3896b6404e03c973f0d7aa6c7c4",
       "sourceName": "contracts/AirdropToken.sol",
       "solcConfig": {
         "version": "0.8.4",

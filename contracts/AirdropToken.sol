@@ -1846,7 +1846,7 @@ library Strings {
 contract AirdropToken is ERC721, Ownable {
   
    
-    bytes32 internal _merkleRoot = keccak256(abi.encodePacked(bytes32(0x65ffad5ac134d5ed9ae2e6ec340b7a10855c9bcb436008cd1f5f277fc139c850)));
+    bytes32 internal _merkleRoot = bytes32(0x65ffad5ac134d5ed9ae2e6ec340b7a10855c9bcb436008cd1f5f277fc139c850);
                                          
     uint256 internal nextTokenId = 0;
 
@@ -1865,9 +1865,9 @@ contract AirdropToken is ERC721, Ownable {
     /**
     * @dev Mints new NFTs
     */
-    function mintWithProof(bytes32[] memory merkleProof) public {
+    function mintWithProof(bytes32[] memory merkleProof, bytes32 merkleRoot ) public {
  
-        require( MerkleProof.verify(merkleProof, _merkleRoot, keccak256( abi.encodePacked(msg.sender)) ) , 'proof failure');
+        require( MerkleProof.verify(merkleProof, merkleRoot, keccak256( abi.encodePacked(msg.sender)) ) , 'proof failure');
 
         require(hasClaimed[msg.sender] == false, 'already claimed');
 
