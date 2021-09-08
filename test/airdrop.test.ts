@@ -101,7 +101,7 @@ describe('MerkleAirdrop', function () {
       console.log('bytes32proof',  hexproof)
 
 
-      await airdropTokenContract.connect(user).mintWithProof( hexproof , hexRoot);
+      await airdropTokenContract.connect(user).mintWithProof( hexproof );
 
 
       let tokenBalance = await airdropTokenContract.connect(user).balanceOf(  userAddress  )
