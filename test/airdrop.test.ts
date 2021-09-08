@@ -95,12 +95,6 @@ describe('MerkleAirdrop', function () {
       console.log(tree.verify(proof, leaf, root)) // true
       expect(tree.verify(proof, leaf, root)).to.equal(true)
 
-      //let bytes32proof = proof.map((x:any) => web3.utils.bytesToHex (x.data)   )
-
-
-
-      //bytes32proof = bytes32proof.filter((x:any) => x.toLowerCase() != userAddress.toLowerCase()   )
-
       console.log('sample bytes32 ', '0xbec921276c8067fe0c82def3e5ecfd8447f1961bc85768c2a56e6bd26d3c0c53' )
       console.log('bytes32proof',  hexproof)
 
