@@ -16,6 +16,8 @@ import {
 } from 'hardhat/types'
 import * as path from 'path'
 
+
+
 config()
 
 const {
@@ -147,25 +149,9 @@ export default <HardhatUserConfig>{
     deployer: {
       default: 0, // here this will by default take the first account as deployer
     },
-    lender: {
+    user: {
       hardhat: 5,
       localhost: 5,
-    },
-    lender2: {
-      hardhat: 6,
-      localhost: 6,
-    },
-    borrower: {
-      hardhat: 7,
-      localhost: 7,
-    },
-    liquidator: {
-      hardhat: 9,
-      localhost: 9,
-    },
-    funder: {
-      hardhat: 14,
-      localhost: 14,
     },
     craSigner: {
       hardhat: 10,

@@ -16,8 +16,9 @@ const deployOptions: DeployFunction = async (hre) => {
   log('')
 
   const tellerOptions = await deploy({
-    contract: 'TokenAirdrop',
-    name: 'TokenAirdrop',
+    contract: 'AirdropToken',
+    name: 'AirdropToken',
+    args: ['Airdrop Token','ADT',""],
     hre
     
   }) 
@@ -25,7 +26,7 @@ const deployOptions: DeployFunction = async (hre) => {
 }
  
 
-deployOptions.tags = ['options']
+deployOptions.tags = ['airdrop']
 deployOptions.dependencies = []
 
 export default deployOptions

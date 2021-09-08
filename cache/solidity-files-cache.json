@@ -663,10 +663,10 @@
         "IERC1155MetadataURI"
       ]
     },
-    "/home/andy/dev/merkle-airdrop/contracts/TokenAirdrop.sol": {
-      "lastModificationDate": 1631053261278,
-      "contentHash": "38d11011abe11468b90ea64d235fcba7",
-      "sourceName": "contracts/TokenAirdrop.sol",
+    "/home/andy/dev/merkle-airdrop/contracts/AirdropToken.sol": {
+      "lastModificationDate": 1631062263710,
+      "contentHash": "b51517a7f72e2909bcb1b35914c16564",
+      "sourceName": "contracts/AirdropToken.sol",
       "solcConfig": {
         "version": "0.8.4",
         "settings": {
@@ -718,6 +718,48 @@
         "Ownable",
         "SafeMath",
         "Strings"
+      ]
+    },
+    "/home/andy/dev/merkle-airdrop/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1631052397067,
+      "contentHash": "cc4777addd464ea56fa35b1c45df0591",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
       ]
     }
   }

@@ -1,6 +1,5 @@
 pragma solidity ^0.8.0;
 
-
  
 
 /*
@@ -33,7 +32,7 @@ library MerkleProof {
         bytes32 computedHash = leaf;
 
         for (uint256 i = 0; i < proof.length; i++) {
-            bytes32 proofElement = proof[i];
+            bytes32 proofElement = proof[i];           
 
             if (computedHash <= proofElement) {
                 // Hash(current computed hash + current element of the proof)
@@ -1844,10 +1843,10 @@ library Strings {
 
 
 
-contract AirdropToken is ERC721 {
+contract AirdropToken is ERC721, Ownable {
   
    
-    bytes32 internal merkleRootHash = keccak256(abi.encode("9a630d33cd4f9d529ff69b46a072fa26544e41d8f4bdfff614a09218a0a97438"));
+    bytes32 internal merkleRootHash = keccak256(abi.encode("65ffad5ac134d5ed9ae2e6ec340b7a10855c9bcb436008cd1f5f277fc139c850"));
 
     uint256 internal nextTokenId = 0;
 
@@ -1858,11 +1857,16 @@ contract AirdropToken is ERC721 {
         _setBaseURI(baseURI);         
     }  
 
+
+    function setBaseURI(string memory baseURI) onlyOwner public {
+        _setBaseURI(baseURI);  
+    }  
+
     /**
     * @dev Mints new NFTs
     */
     function mintWithProof(bytes32[] memory merkleProof) public {
-      
+ 
         require( MerkleProof.verify(merkleProof, merkleRootHash, bytes32(uint256(uint160(msg.sender)))) , 'proof failure');
 
         require(hasClaimed[msg.sender] == false, 'already claimed');
