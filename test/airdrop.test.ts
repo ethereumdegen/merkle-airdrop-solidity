@@ -5,8 +5,7 @@ import { CreateBundleFn, setup } from './helpers/setup'
 const { use, should, expect } = require('chai')
 const { solidity } = require('ethereum-waffle')
 
-const { MerkleTree } = require('merkletreejs')
-const SHA256 = require('crypto-js/sha256')
+const { MerkleTree } = require('merkletreejs') 
 const keccak256 = require('keccak256');
 
 const web3 = require('web3')
@@ -72,6 +71,8 @@ describe('MerkleAirdrop', function () {
 
   */
 
+ 
+
   describe('token contract ', () => {
     it('should be able to mint', async () => {
 
@@ -95,9 +96,7 @@ describe('MerkleAirdrop', function () {
       console.log(tree.verify(proof, leaf, root)) // true
       expect(tree.verify(proof, leaf, root)).to.equal(true)
 
-      console.log('sample bytes32 ', '0xbec921276c8067fe0c82def3e5ecfd8447f1961bc85768c2a56e6bd26d3c0c53' )
-      console.log('bytes32proof',  hexproof)
-
+      
 
       await airdropTokenContract.connect(user).mintWithProof( hexproof );
 
